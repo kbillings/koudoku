@@ -129,7 +129,9 @@ module Koudoku::Subscription
 
           customer = Stripe::Customer.retrieve(self.stripe_id)
 
-          customer.update_subscription(:quantity => self.quantity)
+          customer.update_subscription(:plan => self.plan.stripe_id,
+                                       :quantity => self.quantity,
+                                       :prorate => Koudoku.prorate)
 
           finalize_quantity_change!
 

@@ -123,7 +123,7 @@ module Koudoku::Subscription
       # if they're changing their quantity
       elsif quantity_changed?
 
-        if stripe_id.present?
+        if stripe_id.present? && plan.present?
 
           prepare_for_quantity_change
 
